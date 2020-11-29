@@ -4,7 +4,7 @@ public class Lucky {
     static int x = 0;
     static int count = 0;
 
-    static class LuckyThread implements Runnable {
+    static class LuckyThread extends Thread {
         CommonResource res;
 
         LuckyThread(CommonResource res) {
@@ -33,9 +33,9 @@ public class Lucky {
 
     public static void main(String[] args) throws InterruptedException {
         CommonResource commonResource = new CommonResource();
-        Thread t1 = new Thread(new LuckyThread(commonResource));
-        Thread t2 = new Thread(new LuckyThread(commonResource));
-        Thread t3 = new Thread(new LuckyThread(commonResource));
+        Thread t1 = new LuckyThread(commonResource);
+        Thread t2 = new LuckyThread(commonResource);
+        Thread t3 = new LuckyThread(commonResource);
         t1.start();
         t2.start();
         t3.start();
